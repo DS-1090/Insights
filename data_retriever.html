@@ -7,14 +7,13 @@
     <button onclick="fetchdata()"> Fetch Data</button>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <script>
-      const API_KEY = "AQnW7yZLz26lOr923WKlGkit82s66vbB";
+      const API_KEY = " ";
       const timeperiod = 1;
       async function fetchdata() {
         const res = await fetch(`https://api.nytimes.com/svc/mostpopular/v2/viewed/${timeperiod}.json?api-key=${API_KEY}` );
         const response = await res.json();
         console.log(response);
         const data = JSON.stringify(response.results, null, 2).replace(/},/g, '},\n');
-        //const headlines = JSON.stringify(response.results.map((item) => item.title));
         const blob = new Blob([data], { type: "application/text" });
         const a = Date().toString()
         saveAs(blob, `${a}.txt`);
